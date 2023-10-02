@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payments
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+        - image: europe-central2-docker.pkg.dev/reservation-app-400319/payments/production
+          name: payments
+          ports:
+            - containerPort: 3003
+          env:
+            - name: PORT
+              value: '3003'
+            - name: NOTIFICATIONS_HOST
+              value: 'notifications'
+            - name: NOTIFICATIONS_PORT
+              value: '3004'
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiKey
