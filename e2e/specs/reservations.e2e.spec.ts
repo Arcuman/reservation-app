@@ -47,8 +47,8 @@ describe('Reservations', () => {
           Authentication: jwt,
         },
         body: JSON.stringify({
-          startDate: '02-01-2023',
-          endDate: '02-05-2023',
+          startDate: '02-10-2023',
+          endDate: '02-10-2023',
           placeId: '123',
           invoiceId: '123',
           charge: {
