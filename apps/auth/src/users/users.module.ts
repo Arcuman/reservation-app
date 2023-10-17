@@ -4,6 +4,7 @@ import { UsersService } from './users.service';
 import { DatabaseModule } from '@app/common';
 import { UserRepository } from './users.repository';
 import { UserDocument, UserSchema } from '@app/common/models/users.schema';
+import { UsersResolver } from './users.resolvers';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { UserDocument, UserSchema } from '@app/common/models/users.schema';
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService, UserRepository],
+  providers: [UsersService, UserRepository, UsersResolver],
   exports: [UsersService],
 })
 export class UsersModule {}
